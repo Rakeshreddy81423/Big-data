@@ -1,0 +1,79 @@
+
+
+a.) Calculate total sales per year
+
+Query : 
+SELECT YEAR_ID, SUM(SALES) as TOTAL_SALES FROM sales_order_orc GROUP by YEAR_ID;
+
+
+b.) Find a product for which maximum orders were placed
+
+Query: 
+SELECT PRODUCTCODE FROM ( SELECT PRODUCTCODE , SUM(QUANTITYORDERED) AS TOTAL 
+			   FROM sales_order_orc 
+                         GROUP by PRODUCTCODE 
+			   ORDER by TOTAL DESC   // time using order by = 49.311
+			   LIMIT 1) tbl;         // using sort by with  reducers = 1 ; time = 54.34 sec.
+
+
+c.) Calculate the total sales for each quarter
+
+Query:
+SELECT QTR_ID , SUM(SALES) AS TOTAL_SALES FROM sales_order_orc GROUP by QTR_ID;
+
+
+d.)  In which quarter sales was minimum
+
+Query:
+SELECT QTR_ID FROM ( SELECT QTR_ID , SUM(SALES) AS TOTAL 
+			   FROM sales_order_orc
+			   GROUP by QTR_ID
+			   ORDER by TOTAL
+			  LIMIT 1) tbl;
+
+e.)  In which country sales was maximum and in which country sales was minimum
+
+Country with Minimum sales - Query: 
+
+SELECT COUNTRY FROM (SELECT COUNTRY , SUM(SALES) AS TOTAL
+			FROM sales_order_orc
+			GROUP by COUNTRY
+			ORDER by TOTAL
+			LIMIT 1) tbl;
+
+Country with Maximum sales - Query:
+
+SELECT COUNTRY FROM (SELECT COUNTRY , SUM(SALES) AS TOTAL
+			FROM sales_order_orc
+			GROUP by COUNTRY
+			ORDER by TOTAL DESC
+			LIMIT 1) tbl;
+
+
+f.)  Calculate quartelry sales for each city
+
+
+Query:
+
+SELECT CITY, 
+SUM( CASE WHEN QTR_ID = 1 THEN SALES ELSE 0 END) AS QTR_1,
+SUM( CASE WHEN QTR_ID = 2 THEN SALES ELSE 0 END) AS QTR_2,
+SUM( CASE WHEN QTR_ID = 3 THEN SALES ELSE 0 END) AS QTR_3,
+SUM( CASE WHEN QTR_ID = 4 THEN SALES ELSE 0 END) AS QTR_4
+FROM sales_order_orc
+GROUP by CITY;
+
+h.)  Find a month for each year in which maximum number of quantities were sold
+
+Query: 
+
+
+with cte as ( SELECT YEAR_ID, MONTH_ID, SUM(QUANTITYORDERED) AS TOTAL
+		FROM sales_order_orc
+		GROUP by YEAR_ID, MONTH_ID
+		),
+new_cte as ( SELECT YEAR_ID, MONTH_ID, TOTAL, DENSE_RANK() OVER( PARTITION by YEAR_ID ORDER BY TOTAL DESC) as rnk
+		FROM cte)
+SELECT YEAR_ID, MONTH_ID, TOTAL 
+FROM new_cte
+WHERE rnk = 1;
