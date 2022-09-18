@@ -12,7 +12,7 @@ Query:
 SELECT PRODUCTCODE FROM ( SELECT PRODUCTCODE , SUM(QUANTITYORDERED) AS TOTAL 
 			   FROM sales_order_orc 
                          GROUP by PRODUCTCODE 
-			   ORDER by TOTAL DESC   // time using order by = 49.311
+			   SORT by TOTAL DESC   // time using order by = 49.311
 			   LIMIT 1) tbl;         // using sort by with  reducers = 1 ; time = 54.34 sec.
 
 
@@ -28,7 +28,7 @@ Query:
 SELECT QTR_ID FROM ( SELECT QTR_ID , SUM(SALES) AS TOTAL 
 			   FROM sales_order_orc
 			   GROUP by QTR_ID
-			   ORDER by TOTAL
+			   SORT by TOTAL
 			  LIMIT 1) tbl;
 
 e.)  In which country sales was maximum and in which country sales was minimum
@@ -38,7 +38,7 @@ Country with Minimum sales - Query:
 SELECT COUNTRY FROM (SELECT COUNTRY , SUM(SALES) AS TOTAL
 			FROM sales_order_orc
 			GROUP by COUNTRY
-			ORDER by TOTAL
+			SORT by TOTAL
 			LIMIT 1) tbl;
 
 Country with Maximum sales - Query:
@@ -46,7 +46,7 @@ Country with Maximum sales - Query:
 SELECT COUNTRY FROM (SELECT COUNTRY , SUM(SALES) AS TOTAL
 			FROM sales_order_orc
 			GROUP by COUNTRY
-			ORDER by TOTAL DESC
+			SORT by TOTAL DESC
 			LIMIT 1) tbl;
 
 
@@ -72,7 +72,7 @@ with cte as ( SELECT YEAR_ID, MONTH_ID, SUM(QUANTITYORDERED) AS TOTAL
 		FROM sales_order_orc
 		GROUP by YEAR_ID, MONTH_ID
 		),
-new_cte as ( SELECT YEAR_ID, MONTH_ID, TOTAL, DENSE_RANK() OVER( PARTITION by YEAR_ID ORDER BY TOTAL DESC) as rnk
+new_cte as ( SELECT YEAR_ID, MONTH_ID, TOTAL, DENSE_RANK() OVER( PARTITION by YEAR_ID SORT BY TOTAL DESC) as rnk
 		FROM cte)
 SELECT YEAR_ID, MONTH_ID, TOTAL 
 FROM new_cte
