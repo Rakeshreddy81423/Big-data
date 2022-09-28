@@ -8,3 +8,7 @@ https://github.com/shashank-mishra219/Hive-Class/blob/main/hive_class_3_assignme
 Hive - MiniProject -1 Questions :
 
 https://github.com/shashank-mishra219/Hive-Class/blob/main/hive-final-mini-project-1.txt
+
+Hive - MiniProject -2 Questions:
+
+https://github.com/shashank-mishra219/Hive-Class/blob/main/hive-final-mini-project-2.txt
