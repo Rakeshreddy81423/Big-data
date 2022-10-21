@@ -15,8 +15,7 @@ Hive - MiniProject -2 Questions:
 
 https://github.com/shashank-mishra219/Hive-Class/blob/main/hive-final-mini-project-2.txt
 
-
-## Python Assignment
+## Python 
 
 Python Assignment Questions
 
