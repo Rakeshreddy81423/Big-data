@@ -1,5 +1,7 @@
 # Big-data
 
+## Hive
+
  Hive - Assignment -1 Questions :
 
 https://github.com/shashank-mishra219/Hive-Class/blob/main/hive_class_3_assignment.txt
@@ -12,3 +14,10 @@ https://github.com/shashank-mishra219/Hive-Class/blob/main/hive-final-mini-proje
 Hive - MiniProject -2 Questions:
 
 https://github.com/shashank-mishra219/Hive-Class/blob/main/hive-final-mini-project-2.txt
+
+
+## Python Assignment
+
+Python Assignment Questions
+
+https://github.com/shashank-mishra219/Python-Complete-Guide/blob/main/Python_Assignment.pdf
