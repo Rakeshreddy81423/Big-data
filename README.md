@@ -21,3 +21,6 @@ https://github.com/shashank-mishra219/Hive-Class/blob/main/hive-final-mini-proje
 Python Assignment Questions
 
 https://github.com/shashank-mishra219/Python-Complete-Guide/blob/main/Python_Assignment.pdf
+
+## Kafka
+https://github.com/shashank-mishra219/Confluent-Kafka-Setup/blob/main/kafka_assignment.txt
