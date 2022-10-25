@@ -1,5 +1,6 @@
 # Big-data
 
+Below are the assignment questions which i have worked on for practice.
 ## Hive
 
  Hive - Assignment -1 Questions :
