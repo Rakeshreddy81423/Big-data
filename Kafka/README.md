@@ -3,6 +3,6 @@ And retrieve those data records from  kafka topic using consumer program.
 
 Let us see what exactly each file do.
 ### producer.py
- 1.) Read the data from restaurant_orders.csv file using pandas.
+ 1.) Read the data from restaurant_orders.csv file using pandas.\n
  2.) Flush each record to the partitions created in kafka topic.
  
